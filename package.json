@@ -1,0 +1,8 @@
+{
+  "name": "divs-against-hoomanity-api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/caldric/divs-against-hoomanity-api.git",
+  "author": "caldric <cvaldric@gmail.com>",
+  "license": "MIT"
+}
