@@ -3,6 +3,10 @@ const cors = require('cors')
 const express = require('express')
 const mongoose = require('mongoose')
 const session = require('express-session')
+
+// Controllers
+const blackCards = require('./controllers/blackCard')
+
 require('dotenv').config()
 
 // API config
@@ -50,9 +54,8 @@ app.use(
   })
 )
 
-app.get('/', (req, res) => {
-  res.send('Hello world')
-})
+// Use controllers for routing
+app.use('/api/v1/cards/black', blackCards)
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
