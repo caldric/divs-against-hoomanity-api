@@ -18,7 +18,7 @@
   "scripts": {
     "start": "nodemon build/server.js",
     "build": "tsc",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/tests/**/*.ts'"
+    "test": "mocha -r ts-node/register 'src/tests/**/*.spec.ts'"
   },
   "devDependencies": {
     "@types/chai": "^4.2.14",
