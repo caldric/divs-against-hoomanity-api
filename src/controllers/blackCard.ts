@@ -1,10 +1,10 @@
-const express = require('express')
-const BlackCard = require('../models/blackCard')
+import express, { Request, Response } from 'express'
+import BlackCard from '../models/blackCard'
 
 const router = express.Router()
 
 // Get all cards
-router.get('/', async (req, res) => {
+router.get('/', async (_, res: Response) => {
   try {
     const card = await BlackCard.find()
     res.status(200).json(card)
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 })
 
 // Create new card
-router.post('/', async (req, res) => {
+router.post('/', async (req: Request, res: Response) => {
   // Destructure the required card elements from the body
   const { description, responseCount } = req.body
 
@@ -33,10 +33,10 @@ router.post('/', async (req, res) => {
       description,
       responseCount,
     })
-    res.status(200).json(newCard)
+    return res.status(200).json(newCard)
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    return res.status(500).json({ error: error.message })
   }
 })
 
-module.exports = router
+export default router

@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const whiteCardSchema = new mongoose.Schema({
   description: { type: String, required: true, unique: true },
 })
 
-module.exports = mongoose.model('WhiteCard', whiteCardSchema)
+export default mongoose.model('WhiteCard', whiteCardSchema)

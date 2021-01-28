@@ -1,11 +1,11 @@
 // Package dependencies
-const cors = require('cors')
-const express = require('express')
-const mongoose = require('mongoose')
-const session = require('express-session')
+import cors from 'cors'
+import express from 'express'
+import mongoose from 'mongoose'
+import session from 'express-session'
 
 // Controllers
-const blackCards = require('./controllers/blackCard')
+import blackCards from './controllers/blackCard'
 
 require('dotenv').config()
 
@@ -33,7 +33,7 @@ mongoose.connection.once('open', () => {
 // CORS config
 // TODO: remove undefined
 const whitelist = new Set(['http://localhost:3000', undefined])
-const corsOptions = {
+const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
     if (whitelist.has(origin)) {
       callback(null, true)
@@ -48,7 +48,7 @@ app.use(cors(corsOptions))
 app.use(express.json())
 app.use(
   session({
-    secret: process.env.SECRET,
+    secret: process.env.SECRET || 'ONE WORD ALL UPPERCASE',
     resave: false,
     saveUninitialized: false,
   })
