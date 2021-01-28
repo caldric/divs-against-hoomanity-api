@@ -60,3 +60,5 @@ app.use('/api/v1/cards/black', blackCards)
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
 })
+
+export { app }
