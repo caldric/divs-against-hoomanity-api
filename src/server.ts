@@ -31,11 +31,10 @@ mongoose.connection.once('open', () => {
 })
 
 // CORS config
-// TODO: remove undefined
-const whitelist = new Set(['http://localhost:3000', undefined])
+const whitelist = new Set(['http://localhost:3000'])
 const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
-    if (whitelist.has(origin)) {
+    if (origin && whitelist.has(origin)) {
       callback(null, true)
     } else {
       callback(new Error(`Origin ${origin} not allowed by CORS`))
