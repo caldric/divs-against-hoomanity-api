@@ -68,4 +68,26 @@ describe('POST request', () => {
       })
       .catch((err) => done(err))
   })
+
+  it('Returns a 400 status with an error message when the description is not passed', (done) => {
+    newCard = {
+      description: '',
+      responseCount: 1,
+    }
+
+    request(app)
+      .post('/api/v1/cards/black')
+      .set('origin', origin)
+      .send(newCard)
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .then((res) => {
+        const { body } = res
+        expect(body).to.be.an('object')
+        expect(body).to.have.own.property('error')
+        expect(body.error).to.have.lengthOf.above(0)
+        done()
+      })
+      .catch((err) => done(err))
+  })
 })
