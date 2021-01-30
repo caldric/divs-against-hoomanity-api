@@ -1,8 +1,17 @@
-import mongoose from 'mongoose'
+import { Document, model, Model, Schema } from 'mongoose'
 
-const blackCardSchema = new mongoose.Schema({
+export interface BlackCard {
+  description: string
+  responseCount: number
+}
+
+interface BlackCardDocument extends BlackCard, Document {}
+
+const blackCardSchema: Schema<BlackCardDocument> = new Schema({
   description: { type: String, required: true, unique: true },
   responseCount: { type: Number, required: true },
 })
 
-export default mongoose.model('BlackCard', blackCardSchema)
+const BlackCard: Model<BlackCardDocument> = model('BlackCard', blackCardSchema)
+
+export default BlackCard
