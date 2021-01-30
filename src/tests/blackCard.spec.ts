@@ -70,7 +70,7 @@ describe('POST request', () => {
       .catch((err) => done(err))
   })
 
-  it('Returns a 400 status with an error message when the description is not passed', (done) => {
+  it('Returns 400 with error message when description is falsy', (done) => {
     newCard = {
       description: '',
       responseCount: 1,
@@ -92,7 +92,7 @@ describe('POST request', () => {
       .catch((err) => done(err))
   })
 
-  it('Returns a 400 status with an error message when the responseCount is not passed', (done) => {
+  it('Returns 400 with error message when responseCount is falsy', (done) => {
     newCard = {
       description: 'Test description',
       responseCount: 0,
