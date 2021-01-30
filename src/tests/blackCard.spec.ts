@@ -91,4 +91,26 @@ describe('POST request', () => {
       })
       .catch((err) => done(err))
   })
+
+  it('Returns a 400 status with an error message when the responseCount is not passed', (done) => {
+    newCard = {
+      description: 'Test description',
+      responseCount: 0,
+    }
+
+    request(app)
+      .post(endpoint)
+      .set('origin', origin)
+      .send(newCard)
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .then((res) => {
+        const { body } = res
+        expect(body).to.be.an('object')
+        expect(body).to.have.own.property('error')
+        expect(body.error).to.have.lengthOf.above(0)
+        done()
+      })
+      .catch((err) => done(err))
+  })
 })
