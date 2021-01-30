@@ -43,6 +43,7 @@ describe('GET request', () => {
 
 describe('POST request', () => {
   let newCard: IBlackCard
+  const endpoint: string = '/api/v1/cards/black'
 
   afterEach(async () => {
     await BlackCard.findOneAndDelete(newCard)
@@ -55,7 +56,7 @@ describe('POST request', () => {
     }
 
     request(app)
-      .post('/api/v1/cards/black')
+      .post(endpoint)
       .set('origin', origin)
       .send(newCard)
       .expect('Content-Type', /json/)
@@ -76,7 +77,7 @@ describe('POST request', () => {
     }
 
     request(app)
-      .post('/api/v1/cards/black')
+      .post(endpoint)
       .set('origin', origin)
       .send(newCard)
       .expect('Content-Type', /json/)
