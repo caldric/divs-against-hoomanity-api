@@ -1,10 +1,12 @@
 import { expect } from 'chai'
 import request from 'supertest'
 import { app } from '../server'
+import BlackCard, { IBlackCard } from '../models/blackCard'
+
+const origin: string = 'http://localhost:3000'
 
 describe('GET request', () => {
   const endpoint: string = '/api/v1/cards/black'
-  const origin: string = 'http://localhost:3000'
 
   it('Returns all cards', (done) => {
     request(app)
@@ -33,6 +35,35 @@ describe('GET request', () => {
           'description',
           'responseCount',
         ])
+        done()
+      })
+      .catch((err) => done(err))
+  })
+})
+
+describe('POST request', () => {
+  let newCard: IBlackCard
+
+  afterEach(async () => {
+    await BlackCard.findOneAndDelete(newCard)
+  })
+
+  it('Creates a new card with proper inputs', (done) => {
+    newCard = {
+      description: 'Test description',
+      responseCount: 1,
+    }
+
+    request(app)
+      .post('/api/v1/cards/black')
+      .set('origin', origin)
+      .send(newCard)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        const { body } = res
+        expect(body).to.be.an('object')
+        expect(body).to.include(newCard)
         done()
       })
       .catch((err) => done(err))

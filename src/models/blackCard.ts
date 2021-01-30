@@ -1,11 +1,11 @@
 import { Document, model, Model, Schema } from 'mongoose'
 
-export interface BlackCard {
+export interface IBlackCard {
   description: string
   responseCount: number
 }
 
-interface BlackCardDocument extends BlackCard, Document {}
+interface BlackCardDocument extends IBlackCard, Document {}
 
 const blackCardSchema: Schema<BlackCardDocument> = new Schema({
   description: { type: String, required: true, unique: true },
