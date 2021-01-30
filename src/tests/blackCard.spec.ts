@@ -6,6 +6,7 @@ describe('GET request', () => {
   it('Returns all cards', (done) => {
     request(app)
       .get('/api/v1/cards/black')
+      .set('origin', 'http://localhost:3000')
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
@@ -18,6 +19,7 @@ describe('GET request', () => {
   it('Returns cards with the correct properties', (done) => {
     request(app)
       .get('/api/v1/cards/black')
+      .set('origin', 'http://localhost:3000')
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
